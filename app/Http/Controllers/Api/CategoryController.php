@@ -25,8 +25,17 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $category= $this->category->create($request->all());
-        
+        $category = $this->category->create($request->all());
+
         return response()->json($category,201);
+    }
+
+    public function update (Request $request, $id)
+    {   
+        $category = $this->category->findOrFail($id);
+        $category->update($request->all());
+
+        return response()->json($category,200);
+        
     }
 }
