@@ -20,6 +20,7 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
+            'category_id' => 1,
             'name' => $this->faker->unique()->name(),
             'description' => $this->faker->sentence(20),
         ];
