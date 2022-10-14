@@ -17,6 +17,12 @@ class CategoryController extends Controller
        $this->category = $category;
     }
 
+    public function show ($id)
+    {
+        $category = $this->category->findOrFail($id);
+        return response()->json($category);
+    }
+
     public function index(Request $request)
     {
         $categories = $this->category->getResults($request->name);
@@ -34,6 +40,7 @@ class CategoryController extends Controller
     public function update (StoreUpdateCategoryFormRequest $request, $id)
     {   
         $category = $this->category->findOrFail($id);
+        
         $category->update($request->all());
 
         return response()->json($category,200);
