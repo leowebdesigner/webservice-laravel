@@ -10,9 +10,16 @@ class Category extends Model
 
     protected $fillable = ['name'];
 
+
+
     public function getResults($name)
     {
         return $this->where('name','LIKE',"%{$name}%")
              ->get(); 
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }

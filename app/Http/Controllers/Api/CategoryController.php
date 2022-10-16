@@ -54,4 +54,15 @@ class CategoryController extends Controller
 
         return response()->json(['deletado com sucesso' => true ],204);
     }
+
+    public function products ($id)
+    {
+        $category = $this->category->findOrFail($id);
+        $products = $category->products()->paginate();
+
+        return response()->json([
+            'category' => $category,
+            'products' => $products,
+        ]);
+    }
 }
