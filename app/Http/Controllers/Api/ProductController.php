@@ -24,7 +24,9 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $product = $this->product->create($request->all());
+
+        return response()->json([$product, 201]);
     }
 
     public function show($id)
@@ -34,7 +36,10 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $product = $this->product->findOrFail($id);
+        $product->update($request->all());
+
+        return response()->json($product);
     }
 
   
