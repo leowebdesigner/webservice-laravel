@@ -91,6 +91,12 @@ class ProductController extends Controller
     public function delete($id)
     {
         $product = $this->product->findOrFail($id);
+
+        if($product->image){
+            if(Storage::exists("{$this->path}/{$product->image}"))
+               Storage::delete("{$this->path}/{$product->image}");
+        }
+
         $product->delete($product);
 
         return response()->json(['success' => true, 204]);
