@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateProductFormRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,7 @@ class ProductController extends Controller
        return response()->json($products);
     }
 
-    public function store(Request $request)
+    public function store(StoreUpdateProductFormRequest  $request)
     {
         $product = $this->product->create($request->all());
 
@@ -34,7 +35,7 @@ class ProductController extends Controller
         //
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreUpdateProductFormRequest $request, $id)
     {
         $product = $this->product->findOrFail($id);
         $product->update($request->all());
