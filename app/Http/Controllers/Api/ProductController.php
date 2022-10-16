@@ -32,7 +32,9 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        //
+        $product = $this->product->findOrFail($id);
+        
+        return response()->json($product);
     }
 
     public function update(StoreUpdateProductFormRequest $request, $id)
@@ -46,6 +48,9 @@ class ProductController extends Controller
   
     public function destroy($id)
     {
-        //
+        $product = $this->product->findOrFail($id);
+        $product->delete($product);
+
+        return response()->json(['success' => true, 204]);
     }
 }
